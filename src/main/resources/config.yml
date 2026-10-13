@@ -1,0 +1,82 @@
+# QuickMenu - menú de comandos rápidos
+# Funciona igual para jugadores de Java (inventario) y de Bedrock (formulario de Geyser).
+# Colores con &: &a verde, &c rojo, &e amarillo, &f blanco...
+
+# Escribe en la consola información de lo que hace el plugin (útil si algo no responde)
+debug: false
+
+menu-title: "&8Menú rápido"
+no-permission-message: "&cNo tienes permiso para usar este botón."
+
+# Item que abre el menú al hacer clic derecho (o tocar en Bedrock)
+open-item:
+  enabled: true
+  give-on-join: true      # se entrega al entrar y al reaparecer
+  only-bedrock: true      # solo para jugadores de Bedrock (Geyser); los de Java usan el atajo de abajo
+  material: COMPASS
+  name: "&aMenú rápido"
+  slot: 8                 # casilla de la hotbar: 0 a 8
+  lore:
+    - "&7Clic derecho para abrir"
+
+# Atajo de teclado para Java (sin item): Shift + F, es decir, cambiar de mano estando agachado.
+# Desactivado por defecto: los jugadores de Java no reciben brújula ni atajo (pueden usar /menu).
+# Con require-sneak en false se abriría con solo pulsar F (y ya no se podría cambiar de mano).
+open-key:
+  swap-hand: false
+  require-sneak: true
+
+# Muestra el comando en la descripción de cada botón (solo en el menú de Java)
+show-command: true
+
+# Botones. Se muestran en este orden.
+#   name:        texto del botón
+#   icon:        material del item (solo menú de Java)
+#   command:     comando SIN la barra. %player% se reemplaza por el nombre del jugador
+#   run-as:      player = lo ejecuta el jugador | console = lo ejecuta la consola
+#   permission:  permiso necesario para ver y usar el botón (vacío = todos)
+#   close:       cierra el menú al pulsar
+buttons:
+  sell:
+    name: "&2Vender"
+    icon: EMERALD
+    command: "sellgui"
+    run-as: player
+    permission: ""
+    close: true
+  buy:
+    name: "&1Comprar"
+    icon: CHEST
+    command: "shop"
+    run-as: player
+    permission: ""
+    close: true
+  home:
+    name: "&6Casa"
+    icon: RED_BED
+    command: "home"
+    run-as: player
+    permission: ""
+    close: true
+  sethome:
+    name: "&6Fijar casa"
+    icon: WHITE_BED
+    command: "sethome"
+    run-as: player
+    permission: ""
+    close: true
+  # Ejemplo de un botón solo para moderadores (cambia el permiso por el que uses en LuckPerms):
+  # vanish:
+  #   name: "&5Vanish"
+  #   icon: GLASS
+  #   command: "vanish"
+  #   run-as: player
+  #   permission: "quickmenu.mod"
+  #   close: true
+
+# Botones personales: cada jugador puede añadir y quitar los suyos desde el menú.
+# Se guardan en plugins/QuickMenu/playerdata/ y siempre los ejecuta el propio jugador.
+# Permiso para editarlos: quickmenu.personal (por defecto, todos)
+personal-buttons:
+  enabled: true
+  max-per-player: 6

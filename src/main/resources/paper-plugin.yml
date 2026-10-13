@@ -1,0 +1,15 @@
+name: QuickMenu
+version: '${version}'
+main: com.quickmenu.QuickMenuPlugin
+api-version: '26.2'
+description: Menú de comandos rápidos pensado para jugadores de Bedrock (Geyser); también funciona para Java.
+authors: [Joshua]
+
+# Plugin de Paper con classpath aislado: solo ve las clases de Geyser, no las de otros plugins
+# (por ejemplo Floodgate, que trae su propia copia de Cumulus y provoca un LinkageError).
+dependencies:
+  server:
+    Geyser-Spigot:
+      load: BEFORE
+      required: false
+      join-classpath: true
